@@ -15,18 +15,22 @@ app.use(bodyparser.json()) //Parser du json !
 // --- Route racine ---
 app.get('/', (request, response) => {
     response.status(200)
-    response.render('app/views/pages/interface', {test: 'Salut'})  //On y mettra ici les render pages
+    //response.render('app/views/pages/interface', {test: 'Salut'})  //On y mettra ici les render pages
+    response.send("Hello wothafucka")
 })
 
-// --- Route data reçoit JSON ---
-app.get('/data/', (request, response) => { //Notre route qui désigne la racine
+// --- Routes libre service de notre API ---
+app.get('/meteo/data/', (request, response) => { //Notre route qui désigne la racine
     response.status(200)
-
-    response.send(request.body)  //On y mettra ici les render plus tard ?
+    var Donnees = require('./app/models/donnees')
+    Donnees.alldata(function() { // Appel de la class Donnees
+        console.log("Toutes les data")  //Le callback check
+    })
 
 })
 
-app.get('/data/:variable/', (request, response) => {
+//Route dynamique
+app.get('/dynamique/:variable/', (request, response) => {
 
   //response.setHeader('Content-Type', 'text/plain');
   response.end('Vous êtes à la chambre de l\'étage n°' + request.params.variable);
@@ -34,18 +38,15 @@ app.get('/data/:variable/', (request, response) => {
 })
 
 // --- Route data reçoit JSON ---
-app.post('/data/', (request, response) => {
-
-
+app.post('/data/node', (request, response) => {
     console.log(request.body)
     response.status(200) //Check status by nodeMCU
 
     //Interaction avec la BDD on envoit les donnes du node --
 
-    var Donnees = require('./models/donnees')
+    var Donnees = require('./app/models/donnees')
     Donnees.create(request.body['temp'],request.body['hum'], function() { // Appel de la class Donnees
         console.log("envoie de donnees")  //Le callback check
     })
 })
-
 app.listen(8080)
