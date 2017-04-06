@@ -1,4 +1,3 @@
-
 //---- On appelle nos dépendances -------
 
 var express = require('express') //express la base
@@ -8,7 +7,7 @@ var app = express()
 
 app.set('view engine', 'ejs'),
 
-console.log("Initialisation serveur 8080 :");
+    console.log("Initialisation serveur 8080 :");
 
 app.use(bodyparser.json()) //Parser du json !
 
@@ -20,24 +19,50 @@ app.get('/', (request, response) => {
 })
 
 // --- Routes libre service de notre API ---
-app.get('/meteo/data/', (request, response) => { //Notre route qui désigne la racine
+
+
+app.get('/meteo/data/', (request, response) => {
     response.status(200)
     var Donnees = require('./app/models/donnees')
-    Donnees.alldata(function() { // Appel de la class Donnees
-        console.log("Toutes les data")  //Le callback check
+    Donnees.alldata(function() {
+        console.log("Toutes nos data") //Le callback check
+    })
+
+})
+
+app.get('/meteo/data/lastrecord', (request, response) => {
+    response.status(200)
+    var Donnees = require('./app/models/donnees')
+    Donnees.lastRecord(function() {
+        console.log("Toutes nos data") //Le callback check
     })
 
 })
 
 //Route dynamique
-app.get('/dynamique/:variable/', (request, response) => {
-
-  //response.setHeader('Content-Type', 'text/plain');
-  response.end('Vous êtes à la chambre de l\'étage n°' + request.params.variable);
+app.get('/meteo/data/mois/:mois_variable', (request, response) => {
+    response.status(200)
+    var Donnees = require('./app/models/donnees')
+    Donnees.monthRecord(function() {
+        console.log("Toutes nos data") //Le callback check
+    })
+    //response.setHeader('Content-Type', 'text/plain');
+    response.end('Vous êtes à la route mois : ' + request.params.variable);
 
 })
 
-// --- Route data reçoit JSON ---
+app.get('/meteo/data/jour/:jour_variable', (request, response) => {
+    response.status(200)
+    var Donnees = require('./app/models/donnees')
+    Donnees.dayRecord(function() {
+        console.log("Toutes nos data") //Le callback check
+    })
+    //response.setHeader('Content-Type', 'text/plain');
+    response.end('Vous êtes à la route jour : ' + request.params.variable);
+
+})
+
+// --- Route data reçoit JSON du nodeMCU---
 app.post('/data/node', (request, response) => {
     console.log(request.body)
     response.status(200) //Check status by nodeMCU
@@ -45,8 +70,8 @@ app.post('/data/node', (request, response) => {
     //Interaction avec la BDD on envoit les donnes du node --
 
     var Donnees = require('./app/models/donnees')
-    Donnees.create(request.body['temp'],request.body['hum'], function() { // Appel de la class Donnees
-        console.log("envoie de donnees")  //Le callback check
+    Donnees.create(request.body['temp'], request.body['hum'], function() { // Appel de la class Donnees
+        console.log("envoie de donnees") //Le callback check
     })
 })
 app.listen(8080)

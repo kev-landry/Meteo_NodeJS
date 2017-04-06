@@ -1,26 +1,38 @@
-
 var connection = require('./connection_db')
 
 class Donnees {
 
-  static create(temp,hum, cb){
+    static create(temp, hum, cb) {
+        // -- Query similaire au prepare de PHP avec SET ?
+        connection.query('INSERT INTO donnees SET temp = ?, hum = ?, date = ?', [temp, hum, new Date()], (err, result) => {
+            if (err) throw err
 
+            cb(result) //Le callback sa mère
+        })
+    }
 
-    // -- Query similaire au prepare de PHP avec SET ?
-    connection.query('INSERT INTO donnees SET temp = ?, hum = ?, date = ?', [temp, hum, new Date()], (err, result)=> {
-      if (err) throw err
+    static alldata(cb) {
 
-      cb(result) //Le callback sa mère
-    })
-  }
+        connection.query('SELECT * FROM donnees', (err, result) => {
+            if (err) throw err
 
-  static alldata(){
+            cb(result)
 
-    connection.query('SELECT * FROM donnees', (err, result)=> {
+        })
+    }
+    static lastRecord(cb) {
 
-    if (err) throw err
+      connection.query('SELECT temp, humi FROM donnees ORDER BY id DESC LIMIT 1', (err, result) => {
+        if (err) throw err
 
+        cb(result)
+      })
+    }
+    static dayRecord(cb) {
 
-  })
+    }
+    static monthRecord (cb){
+
+    }
 }
 module.exports = Donnees
