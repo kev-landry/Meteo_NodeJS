@@ -15,7 +15,7 @@ app.use(bodyparser.json()) //Parser du json !
 // --- Route racine ---
 app.get('/', (request, response) => {
     response.status(200)
-    response.render('views/pages/index', {test: 'Salut'})  //On y mettra ici les render pages
+    response.render('app/views/pages/interface', {test: 'Salut'})  //On y mettra ici les render pages
 })
 
 // --- Route data reçoit JSON ---

@@ -8,7 +8,7 @@ var connection = mysql.createConnection({
   user     : 'root',
   password : '_8NaR*qg(7V2',
   database : 'meteo',
-  socketPath: '/var/run/mysqld/mysqld.sock'
+//  socketPath: '/var/run/mysqld/mysqld.sock'
 });
 
 // Checker
