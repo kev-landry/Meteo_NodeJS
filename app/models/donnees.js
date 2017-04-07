@@ -11,21 +11,22 @@ class Donnees {
         })
     }
 
-    static alldata(cb) {
+    static alldata(callback) {
 
         connection.query('SELECT * FROM donnees', (err, result) => {
             if (err) throw err
 
-            cb(result)
+            callback(result)
 
         })
     }
-    static lastRecord(cb) {
+    static lastRecord(callback) {
 
-      connection.query('SELECT temp, humi FROM donnees ORDER BY id DESC LIMIT 1', (err, result) => {
+      connection.query('SELECT temp, hum FROM donnees ORDER BY id DESC LIMIT 1', (err, result) => {
         if (err) throw err
 
-        cb(result)
+        callback(result)
+
       })
     }
     static dayRecord(cb) {
@@ -33,6 +34,13 @@ class Donnees {
     }
     static monthRecord (cb){
 
+    }
+    static fourchette(callback){
+      connection.query("SELECT * FROM post WHERE date BETWEEN '"+debut+"' AND '"+fin+"' ", (err, result) => {
+        if (err) throw err
+
+
+      })
     }
 }
 module.exports = Donnees

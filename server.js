@@ -33,13 +33,13 @@ app.get('/meteo/data/', (request, response) => {
 app.get('/meteo/data/lastrecord', (request, response) => {
     response.status(200)
     var Donnees = require('./app/models/donnees')
-    Donnees.lastRecord(function() {
-        console.log("Toutes nos data") //Le callback check
+    Donnees.lastRecord(function(data) {
+        console.log(data) //Le callback check
     })
 
 })
 
-//Route dynamique
+//Les routes dynamiques
 app.get('/meteo/data/mois/:mois_variable', (request, response) => {
     response.status(200)
     var Donnees = require('./app/models/donnees')
@@ -63,7 +63,7 @@ app.get('/meteo/data/jour/:jour_variable', (request, response) => {
 })
 
 // --- Route data reçoit JSON du nodeMCU---
-app.post('/data/node', (request, response) => {
+app.post('/node', (request, response) => {
     console.log(request.body)
     response.status(200) //Check status by nodeMCU
 
