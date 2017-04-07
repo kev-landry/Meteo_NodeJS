@@ -15,7 +15,7 @@ app.use(bodyparser.json()) //Parser du json !
 app.get('/', (request, response) => {
     response.status(200)
     //response.render('app/views/pages/interface', {test: 'Salut'})  //On y mettra ici les render pages
-    response.send("Hello wothafucka")
+    response.send("Hello Mothafucka")
 })
 
 // --- Routes libre service de notre API ---
@@ -24,30 +24,28 @@ app.get('/', (request, response) => {
 app.get('/meteo/data/', (request, response) => {
     response.status(200)
     var Donnees = require('./app/models/donnees')
-    Donnees.alldata(function() {
-        console.log("Toutes nos data") //Le callback check
+    Donnees.alldata(function(data) {
+        return response.json(data) //Le callback check
     })
-
 })
 
 app.get('/meteo/data/lastrecord', (request, response) => {
     response.status(200)
     var Donnees = require('./app/models/donnees')
     Donnees.lastRecord(function(data) {
-        console.log(data) //Le callback check
+        return response.json(data) //Le callback check
     })
-
 })
 
 //Les routes dynamiques
 app.get('/meteo/data/mois/:mois_variable', (request, response) => {
     response.status(200)
     var Donnees = require('./app/models/donnees')
-    Donnees.monthRecord(function() {
-        console.log("Toutes nos data") //Le callback check
-    })
-    //response.setHeader('Content-Type', 'text/plain');
-    response.end('Vous êtes à la route mois : ' + request.params.variable);
+    /*Donnees.monthRecord(function(data) {
+        return response.json(data) //Le callback check
+    })*/
+    response.setHeader('Content-Type', 'text/plain');
+    response.end('Vous êtes à la route du mois : ' + request.params.mois_variable);
 
 })
 
@@ -55,7 +53,7 @@ app.get('/meteo/data/jour/:jour_variable', (request, response) => {
     response.status(200)
     var Donnees = require('./app/models/donnees')
     Donnees.dayRecord(function() {
-        console.log("Toutes nos data") //Le callback check
+        return response.json(data) //Le callback check
     })
     //response.setHeader('Content-Type', 'text/plain');
     response.end('Vous êtes à la route jour : ' + request.params.variable);
@@ -71,7 +69,7 @@ app.post('/node', (request, response) => {
 
     var Donnees = require('./app/models/donnees')
     Donnees.create(request.body['temp'], request.body['hum'], function() { // Appel de la class Donnees
-        console.log("envoie de donnees") //Le callback check
+        console.log("envoie de donnees => DB") //Le callback check
     })
 })
 app.listen(8080)

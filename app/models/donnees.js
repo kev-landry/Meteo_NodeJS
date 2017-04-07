@@ -32,9 +32,16 @@ class Donnees {
     static dayRecord(cb) {
 
     }
-    static monthRecord (cb){
 
+    static monthRecord (cb){
+      connection.query('SELECT temp, hum FROM donnees WHERE MONTH(temp) = 'month_number'', (err, result) => {
+        if (err) throw err
+
+        callback(result)
+
+      })
     }
+
     static fourchette(callback){
       connection.query("SELECT * FROM post WHERE date BETWEEN '"+debut+"' AND '"+fin+"' ", (err, result) => {
         if (err) throw err
