@@ -41,11 +41,12 @@ app.get('/meteo/data/lastrecord', (request, response) => {
 app.get('/meteo/data/mois/:mois_variable', (request, response) => {
     response.status(200)
     var Donnees = require('./app/models/donnees')
-    /*Donnees.monthRecord(function(data) {
+    var mois = request.params.mois_variable
+    Donnees.monthRecord(mois, function(data) {
+        console.log(data)
         return response.json(data) //Le callback check
-    })*/
-    response.setHeader('Content-Type', 'text/plain');
-    response.end('Vous êtes à la route du mois : ' + request.params.mois_variable);
+    })
+    //response.end('Vous êtes à la route du moi : ' + mois);
 
 })
 
