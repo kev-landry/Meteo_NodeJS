@@ -2,9 +2,9 @@ var connection = require('./connection_db')
 
 class Donnees {
 
-    static create(temp, hum, cb) {
+    static insert(temp, hum, cb) {
         // -- Query similaire au prepare de PHP avec SET ?
-        connection.query('INSERT INTO donnees SET temp = ?, hum = ?, date = ?', [temp, hum, new Date()], (err, result) => {
+        connection.query('INSERT INTO donnees SET temp = ?, hum = ?, time_ = ?', [temp, hum, new Date()], (err, result) => {
             if (err) throw err
 
             cb(result) //Le callback sa mère
@@ -84,7 +84,7 @@ class Donnees {
     }
 
     static fourchette(callback) {
-        connection.query("SELECT * FROM donnees WHERE date BETWEEN '" + debut + "' AND '" + fin + "' ", (err, result) => {
+        connection.query("SELECT * FROM donnees WHERE time_ BETWEEN '" + debut + "' AND '" + fin + "' ", (err, result) => {
             if (err) throw err
 
 

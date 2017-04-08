@@ -62,14 +62,14 @@ app.get('/meteo/data/jour/:jour_variable', (request, response) => {
 })
 
 // --- Route data reçoit JSON du nodeMCU---
-app.post('/node', (request, response) => {
+app.post('/node/', (request, response) => {
     console.log(request.body)
     response.status(200) //Check status by nodeMCU
 
-    //Interaction avec la BDD on envoit les donnes du node --
+    //Interaction avec la BDD on envoit les donnees du node --
 
     var Donnees = require('./app/models/donnees')
-    Donnees.create(request.body['temp'], request.body['hum'], function() { // Appel de la class Donnees
+    Donnees.insert(request.body['temp'], request.body['hum'], function() { // Appel de la class Donnees
         console.log("envoie de donnees => DB") //Le callback check
     })
 })
