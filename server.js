@@ -7,7 +7,7 @@ var app = express()
 
 app.set('view engine', 'ejs'),
 
-    console.log("Initialisation serveur 8080 :");
+console.log("Initialisation serveur 8080 :");
 
 app.use(bodyparser.json()) //Parser du json !
 
@@ -33,7 +33,7 @@ app.get('/meteo/data/lastrecord', (request, response) => {
     response.status(200)
     var Donnees = require('./app/models/donnees')
     Donnees.lastRecord(function(data) {
-        return response.json(data) //Le callback check
+        return response.json(data)
     })
 })
 

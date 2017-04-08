@@ -6,7 +6,7 @@ var mysql      = require('mysql');
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : 'root',  //'_8NaR*qg(7V2'
+  password : '_8NaR*qg(7V',  //'_8NaR*qg(7V2'
   database : 'meteo',
   //socketPath: '/var/run/mysqld/mysqld.sock'
 });
