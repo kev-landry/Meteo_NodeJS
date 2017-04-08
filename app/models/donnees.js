@@ -25,8 +25,6 @@ class Donnees {
         connection.query('SELECT temp, hum FROM donnees ORDER BY id DESC LIMIT 1', (err, result) => {
             if (err) throw err
 
-            callback(result)
-
         })
     }
     static dayRecord(cb) {
