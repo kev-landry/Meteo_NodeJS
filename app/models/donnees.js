@@ -2,6 +2,7 @@ var connection = require('./connection_db')
 
 class Donnees {
 
+// On utilisera ici des méthodes static donc commune entre toutes les instances de la classe "Donnees" si j'ai bien compris ?
     static insert(temp, hum, cb) {
         // -- Query similaire au prepare de PHP avec SET ?
         connection.query('INSERT INTO donnees SET temp = ?, hum = ?, time_ = ?', [temp, hum, new Date()], (err, result) => {
@@ -20,15 +21,23 @@ class Donnees {
 
         })
     }
-    static lastRecord(callback) {
+    static lastRecord(lastrecords, callback) {
 
-        connection.query('SELECT temp, hum FROM donnees ORDER BY id DESC LIMIT 1', (err, result) => {
+        connection.query("SELECT * FROM donnees ORDER BY id DESC LIMIT " + lastrecords +"", (err, result) => {
             if (err) throw err
 
+            callback(result)
         })
     }
     static dayRecord(cb) {
 
+
+      console.log(num)
+      connection.query("SELECT * FROM donnees WHERE MONTH(time_) = "+ num + "", (err, result) => {
+              if (err) throw err
+
+              callback(result)
+          })
     }
 
     static monthRecord(mois, callback) {
@@ -75,11 +84,10 @@ class Donnees {
                  num = 4
         }
         console.log(num)
-        connection.query("SELECT temp, hum FROM donnees WHERE MONTH(time_) = 'num'", (err, result) => {
+        connection.query("SELECT * FROM donnees WHERE MONTH(time_) = "+ num + "", (err, result) => {
                 if (err) throw err
 
                 callback(result)
-
             })
     }
 

@@ -25,19 +25,25 @@ app.get('/meteo/data/', (request, response) => {
     response.status(200)
     var Donnees = require('./app/models/donnees')
     Donnees.alldata(function(data) {
-        return response.json(data) //Le callback check
-    })
-})
-
-app.get('/meteo/data/lastrecord', (request, response) => {
-    response.status(200)
-    var Donnees = require('./app/models/donnees')
-    Donnees.lastRecord(function(data) {
         return response.json(data)
     })
 })
 
-//Les routes dynamiques
+//------------------- Les routes dynamiques ----------------
+
+//Choisir les derniers records en date:
+app.get('/meteo/data/lastrecords/:lastrecords', (request, response) => {
+    response.status(200)
+
+    var lastrecords = request.params.lastrecords
+        var Donnees = require('./app/models/donnees')
+    Donnees.lastRecord(lastrecords, function(data) {
+        return response.json(data)
+    })
+})
+
+
+//Choisir un mois :
 app.get('/meteo/data/mois/:mois_variable', (request, response) => {
     response.status(200)
     var Donnees = require('./app/models/donnees')
@@ -46,10 +52,9 @@ app.get('/meteo/data/mois/:mois_variable', (request, response) => {
         console.log(data)
         return response.json(data) //Le callback check
     })
-    //response.end('Vous êtes à la route du moi : ' + mois);
-
 })
 
+//Choisir un jour:
 app.get('/meteo/data/jour/:jour_variable', (request, response) => {
     response.status(200)
     var Donnees = require('./app/models/donnees')
@@ -67,10 +72,9 @@ app.post('/node/', (request, response) => {
     response.status(200) //Check status by nodeMCU
 
     //Interaction avec la BDD on envoit les donnees du node --
-
     var Donnees = require('./app/models/donnees')
-    Donnees.insert(request.body['temp'], request.body['hum'], function() { // Appel de la class Donnees
-        console.log("envoie de donnees => DB") //Le callback check
+    Donnees.insert(request.body['temp'], request.body['hum'], function() { // Appel de la la méthode insert dans la class Donnes
+        console.log("envoie de donnees => DB") //checking logs
     })
 })
-app.listen(8080)
+app.listen(8000)
