@@ -4,20 +4,23 @@ var express = require('express') //express la base
 var url = require('url') // osef atm
 var bodyparser = require('body-parser') //Pour extraire le body de la requête
 var app = express()
+var path = require('path')
 
+app.set('views', path.join(__dirname, '/app/views'));
 app.set('view engine', 'ejs'),
 
     console.log("Initialisation serveur 8000 :");
 
 app.use(bodyparser.json()) //Parser du json !
 
-// --- Route racine ---
+app.use('/static', express.static('app/public')); //Les fichiers css/js qui bougent pas
+
+//Racine
 app.get('/', (request, response) => {
     response.status(200)
     //response.render('app/views/pages/interface', {test: 'Salut'})  //On y mettra ici les render pages
-    response.send("Hello Mothafucka")
+    response.render('index')
 })
-
 // --- Routes libre service de notre API ---
 
 
