@@ -91,11 +91,11 @@ class Donnees {
             })
     }
 
-    static fourchette(callback) {
+    static range(debut, fin, callback) {
         connection.query("SELECT * FROM donnees WHERE time_ BETWEEN '" + debut + "' AND '" + fin + "' ", (err, result) => {
             if (err) throw err
 
-
+            callback(result)
         })
     }
 }

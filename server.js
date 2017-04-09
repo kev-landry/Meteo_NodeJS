@@ -7,7 +7,7 @@ var app = express()
 
 app.set('view engine', 'ejs'),
 
-console.log("Initialisation serveur 8080 :");
+    console.log("Initialisation serveur 8000 :");
 
 app.use(bodyparser.json()) //Parser du json !
 
@@ -36,7 +36,7 @@ app.get('/meteo/data/lastrecords/:lastrecords', (request, response) => {
     response.status(200)
 
     var lastrecords = request.params.lastrecords
-        var Donnees = require('./app/models/donnees')
+    var Donnees = require('./app/models/donnees')
     Donnees.lastRecord(lastrecords, function(data) {
         return response.json(data)
     })
@@ -64,6 +64,17 @@ app.get('/meteo/data/jour/:jour_variable', (request, response) => {
     //response.setHeader('Content-Type', 'text/plain');
     response.end('Vous êtes à la route jour : ' + request.params.variable);
 
+})
+//Choisir range
+app.get('/meteo/data/range/:debut/:fin', (request, response) => {
+    response.status(200)
+    var Donnees = require('./app/models/donnees')
+    var debut = request.params.debut
+    var fin = request.params.fin
+    Donnees.range(debut, fin, function(data) {
+        console.log(data)
+        return response.json(data)
+    })
 })
 
 // --- Route data reçoit JSON du nodeMCU---
