@@ -6,9 +6,9 @@ var mysql      = require('mysql');
 var connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
-  password : '',  //'_8NaR*qg(7V2'
+  password : '_8NaR*qg(7V2',  //'_8NaR*qg(7V2'
   database : 'meteo',
-  //socketPath: '/var/run/mysqld/mysqld.sock'
+  socketPath: '/var/run/mysqld/mysqld.sock'
 });
 
 // Checker
