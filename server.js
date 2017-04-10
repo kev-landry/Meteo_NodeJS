@@ -22,6 +22,13 @@ app.get('/', (request, response) => {
 
     //console.log(request)
 })
+
+app.get('/doc', (request, response) => {
+
+    response.render('pages/doc_api', {test: 'Salut zemilzel k ezl zeo,fs fjz jfezl'})
+
+    //console.log(request)
+})
 // --- Routes libre service de notre API ---
 
 
