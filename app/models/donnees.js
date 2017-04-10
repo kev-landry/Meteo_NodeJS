@@ -29,10 +29,9 @@ class Donnees {
             callback(result)
         })
     }
-    static dayRecord(cb) {
+    static dayRecord(jour, callback) {
 
-      while()
-      connection.query("SELECT * FROM donnees WHERE DAY(time_) = "+ num + "", (err, result) => {
+      connection.query("SELECT * FROM donnees WHERE DAY(time_) = DAY('"+ jour + "')", (err, result) => {
               if (err) throw err
 
               callback(result)

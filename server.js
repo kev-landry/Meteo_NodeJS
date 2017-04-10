@@ -17,9 +17,10 @@ app.use('/static', express.static('app/public')); //Les fichiers css/js qui boug
 
 //Racine
 app.get('/', (request, response) => {
-    response.status(200)
-    //response.render('app/views/pages/interface', {test: 'Salut'})  //On y mettra ici les render pages
-    response.render('index')
+
+    response.render('index', {test: 'Salut zemilzel k ezl zeo,fs fjz jfezl'})
+
+    //console.log(request)
 })
 // --- Routes libre service de notre API ---
 
@@ -53,7 +54,7 @@ app.get('/meteo/data/mois/:mois_variable', (request, response) => {
     var mois = request.params.mois_variable
     Donnees.monthRecord(mois, function(data) {
         console.log(data)
-        return response.json(data) //Le callback check
+        return response.json(data)
     })
 })
 
@@ -61,13 +62,13 @@ app.get('/meteo/data/mois/:mois_variable', (request, response) => {
 app.get('/meteo/data/jour/:jour_variable', (request, response) => {
     response.status(200)
     var Donnees = require('./app/models/donnees')
-    Donnees.dayRecord(function() {
-        return response.json(data) //Le callback check
+    var jour = request.params.jour_variable
+    console.log(jour)
+    Donnees.dayRecord(jour, function(data) {
+        return response.json(data)
     })
-    //response.setHeader('Content-Type', 'text/plain');
-    response.end('Vous êtes à la route jour : ' + request.params.variable);
-
 })
+
 //Choisir range
 app.get('/meteo/data/range/:debut/:fin', (request, response) => {
     response.status(200)
@@ -79,7 +80,7 @@ app.get('/meteo/data/range/:debut/:fin', (request, response) => {
         return response.json(data)
     })
 })
-
+//astree softwares
 // --- Route data reçoit JSON du nodeMCU---
 app.post('/node/', (request, response) => {
     console.log(request.body)
@@ -91,4 +92,6 @@ app.post('/node/', (request, response) => {
         console.log("envoie de donnees => DB") //checking logs
     })
 })
+
+
 app.listen(8000)
