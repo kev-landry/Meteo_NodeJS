@@ -31,9 +31,8 @@ class Donnees {
     }
     static dayRecord(cb) {
 
-
-      console.log(num)
-      connection.query("SELECT * FROM donnees WHERE MONTH(time_) = "+ num + "", (err, result) => {
+      while()
+      connection.query("SELECT * FROM donnees WHERE DAY(time_) = "+ num + "", (err, result) => {
               if (err) throw err
 
               callback(result)
