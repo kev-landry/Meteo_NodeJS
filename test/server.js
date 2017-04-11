@@ -60,15 +60,6 @@ app.get('/meteo/data/', (request, response) => {
 
 //------------------- Les routes dynamiques ----------------
 
-
-/**
- * @api {get} /meteo/data/lastrecords/:lastrecord Renvoie les n dernières données
- * @apiName Lastrecords
- * @apiGroup Routes
- * @apiDescription Renvoie les n dernières données
- */
-
-
 //Choisir les derniers records en date:
 app.get('/meteo/data/lastrecords/:lastrecords', (request, response) => {
     response.status(200)
@@ -80,13 +71,7 @@ app.get('/meteo/data/lastrecords/:lastrecords', (request, response) => {
     })
 })
 
-/**
- * @api {get} /meteo/data/mois/:mois Renvoie toutes les données du mois passées en paramètre
- * @apiName Mois
- * @apiGroup Routes
- *
- *
- */
+
 //Choisir un mois :
 app.get('/meteo/data/mois/:mois_variable', (request, response) => {
     response.status(200)
@@ -98,13 +83,6 @@ app.get('/meteo/data/mois/:mois_variable', (request, response) => {
     })
 })
 
-/**
- * @api {get} /meteo/data/jour/:jour Renvoie toutes les données du jour passées en paramètre
- * @apiName Jour
- * @apiGroup Routes
- *
- *
- */
 //Choisir un jour:
 app.get('/meteo/data/jour/:jour_variable', (request, response) => {
     response.status(200)
@@ -116,13 +94,6 @@ app.get('/meteo/data/jour/:jour_variable', (request, response) => {
     })
 })
 
-/**
- * @api {get} /meteo/data/range/:debut/:fin Renvoie toutes les données du mois passées en paramètre
- * @apiName Mois
- * @apiGroup Routes
- *
- *
- */
 //Choisir range
 app.get('/meteo/data/range/:debut/:fin', (request, response) => {
     response.status(200)
@@ -134,15 +105,6 @@ app.get('/meteo/data/range/:debut/:fin', (request, response) => {
         return response.json(data)
     })
 })
-
-/**
- * @api {post} /node/ Envoie les données capturées par le node MCU
- * @apiName Node MCU
- * @apiGroup Routes
- *
- *
- */
-
 //astree softwares
 // --- Route data reçoit JSON du nodeMCU---
 app.post('/node/', (request, response) => {
