@@ -60,7 +60,7 @@
     "examples": [
       {
         "title": "Recevoir les données de mardu 11 avril",
-        "content": "http://localhost/meteo/data/jour/2017-04-11",
+        "content": "/meteo/data/jour/2017-04-11",
         "type": "json"
       }
     ],
@@ -78,7 +78,7 @@
     "examples": [
       {
         "title": "Recevoir les 15 dernières données:",
-        "content": "http://localhost/user/15",
+        "content": "/meteo/data/lastrecords/15",
         "type": "json"
       }
     ],
@@ -96,7 +96,7 @@
     "examples": [
       {
         "title": "Recevoir les données du mois d'avril:",
-        "content": "http://localhost/data/meteo/mois/avril",
+        "content": "/data/meteo/mois/avril",
         "type": "json"
       }
     ],
@@ -114,7 +114,7 @@
     "examples": [
       {
         "title": "Recevoir les données du 2017-04-08 au 2017-04-12:",
-        "content": "http://localhost/meteo/data/2017-04-08/2017-04-11",
+        "content": "/meteo/data/2017-04-08/2017-04-11",
         "type": "json"
       }
     ],
@@ -132,22 +132,5 @@
     "version": "0.0.0",
     "filename": "test/server.js",
     "groupTitle": "POST"
-  },
-  {
-    "type": "get",
-    "url": "/user/:id",
-    "title": "",
-    "examples": [
-      {
-        "title": "Example usage:",
-        "content": "curl -i http://localhost/user/4711",
-        "type": "curl"
-      }
-    ],
-    "version": "0.0.0",
-    "filename": "test/server.js",
-    "group": "_var_www_html_Meteo_NodeJS_test_server_js",
-    "groupTitle": "_var_www_html_Meteo_NodeJS_test_server_js",
-    "name": "GetUserId"
   }
 ]
