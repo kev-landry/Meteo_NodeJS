@@ -18,23 +18,24 @@ app.use('/static', express.static('app/public')); //Les fichiers css/js qui boug
 //Racine
 app.get('/', (request, response) => {
 
-    response.render('index', {test: 'Salut zemilzel k ezl zeo,fs fjz jfezl'})
+    response.render('index', {
+        test: 'Salut'
+    })
 
-    //console.log(request)
 })
 
 app.get('/doc', (request, response) => {
 
-    response.render('pages/doc_api', {test: 'Salut zemilzel k ezl zeo,fs fjz jfezl'})
-
-    //console.log(request)
+    response.render('pages/doc_api', {
+        test: 'Salut' //variable locale
+    })
 })
-// --- Routes libre service de notre API ---
+                      // --------- Routes libre service de notre API ------------
 
 /**
  * @api {get} /meteo/data Renvoie toutes les donnéees
  * @apiName Alldata
- * @apiGroup Routes
+ * @apiGroup GET
  *
  *
  * @apiSuccess {int} id Id du champ.
@@ -62,10 +63,12 @@ app.get('/meteo/data/', (request, response) => {
 
 
 /**
- * @api {get} /meteo/data/lastrecords/:lastrecord Renvoie les n dernières données
+ * @api {get} /meteo/data/lastrecords/:lastrecord Obtenir les dernières données jusqu'aujourd'hui
  * @apiName Lastrecords
- * @apiGroup Routes
+ * @apiGroup GET
  * @apiDescription Renvoie les n dernières données
+ * @apiExample {js} Example usage:
+ *          This is an example.
  */
 
 
@@ -81,11 +84,13 @@ app.get('/meteo/data/lastrecords/:lastrecords', (request, response) => {
 })
 
 /**
- * @api {get} /meteo/data/mois/:mois Renvoie toutes les données du mois passées en paramètre
+ * @api {get} /meteo/data/mois/:mois
  * @apiName Mois
- * @apiGroup Routes
+ * @apiGroup GET
+ * @apiDescription Renvoie toutes les données du mois passées en paramètre
  *
- *
+ * @apiExemple {curl} exemple
+ * curl -i http://localhost:8000/meteo/data/mois/avril
  */
 //Choisir un mois :
 app.get('/meteo/data/mois/:mois_variable', (request, response) => {
@@ -99,11 +104,12 @@ app.get('/meteo/data/mois/:mois_variable', (request, response) => {
 })
 
 /**
- * @api {get} /meteo/data/jour/:jour Renvoie toutes les données du jour passées en paramètre
+ * @api {get} /meteo/data/jour/:jour
  * @apiName Jour
- * @apiGroup Routes
- *
- *
+ * @apiGroup GET
+ * @apiDescription Renvoie toutes les données du jour passées en paramètre
+ * @apiExemple Je souhaite savoir les température du 2017-04-09 :
+ *    /meteo/data/jour/2017-04-09
  */
 //Choisir un jour:
 app.get('/meteo/data/jour/:jour_variable', (request, response) => {
@@ -117,11 +123,12 @@ app.get('/meteo/data/jour/:jour_variable', (request, response) => {
 })
 
 /**
- * @api {get} /meteo/data/range/:debut/:fin Renvoie toutes les données du mois passées en paramètre
- * @apiName Mois
- * @apiGroup Routes
- *
- *
+ * @api {get} /meteo/data/range/:debut/:fin
+ * @apiName Range
+ * @apiGroup GET
+ * @apiDescription Renvoie toutes les données entre la date de début et fin
+ * @apiExemple Entre le 2017-04-08 et le 2017-04-10 :
+ *    /meteo/data/range/2017-04-08/2017-04-10
  */
 //Choisir range
 app.get('/meteo/data/range/:debut/:fin', (request, response) => {
@@ -136,14 +143,12 @@ app.get('/meteo/data/range/:debut/:fin', (request, response) => {
 })
 
 /**
- * @api {post} /node/ Envoie les données capturées par le node MCU
+ * @api {post} /node/ NodeMCU vers API
  * @apiName Node MCU
- * @apiGroup Routes
- *
- *
+ * @apiGroup POST
+ * @apiDescription Envoie les données capturées par le node MCU
  */
 
-//astree softwares
 // --- Route data reçoit JSON du nodeMCU---
 app.post('/node/', (request, response) => {
     console.log(request.body)
@@ -155,6 +160,10 @@ app.post('/node/', (request, response) => {
         console.log("envoie de donnees => DB") //checking logs
     })
 })
-
+/**
+ * @api {get} /user/:id
+ * @apiExample {curl} Example usage:
+ *     curl -i http://localhost/user/4711
+ */
 
 app.listen(8000)

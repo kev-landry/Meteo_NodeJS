@@ -1,7 +1,7 @@
 {
   "name": "Meteo_NodeJS",
   "version": "1.0.0",
-  "description": "API qui va gérer des données météorologiques",
+  "description": "API qui gère des données météorologiques",
   "title": "API avec NodeJS/Express",
   "url" : ""
 }
