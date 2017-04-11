@@ -53,10 +53,17 @@ define({ "api": [
   {
     "type": "get",
     "url": "/meteo/data/jour/:jour",
-    "title": "",
+    "title": "Obtenir les données du jour",
     "name": "Jour",
     "group": "GET",
-    "description": "<p>Renvoie toutes les données du jour passées en paramètre</p>",
+    "description": "<p>Renvoie toutes les données du jour passées en paramètre au format anglais</p>",
+    "examples": [
+      {
+        "title": "Recevoir les données de mardu 11 avril",
+        "content": "http://localhost/meteo/data/jour/2017-04-11",
+        "type": "json"
+      }
+    ],
     "version": "0.0.0",
     "filename": "test/server.js",
     "groupTitle": "GET"
@@ -68,6 +75,13 @@ define({ "api": [
     "name": "Lastrecords",
     "group": "GET",
     "description": "<p>Renvoie les n dernières données</p>",
+    "examples": [
+      {
+        "title": "Recevoir les 15 dernières données:",
+        "content": "http://localhost/user/15",
+        "type": "json"
+      }
+    ],
     "version": "0.0.0",
     "filename": "test/server.js",
     "groupTitle": "GET"
@@ -75,10 +89,17 @@ define({ "api": [
   {
     "type": "get",
     "url": "/meteo/data/mois/:mois",
-    "title": "",
+    "title": "Obtenir les données du mois",
     "name": "Mois",
     "group": "GET",
     "description": "<p>Renvoie toutes les données du mois passées en paramètre</p>",
+    "examples": [
+      {
+        "title": "Recevoir les données du mois d'avril:",
+        "content": "http://localhost/data/meteo/mois/avril",
+        "type": "json"
+      }
+    ],
     "version": "0.0.0",
     "filename": "test/server.js",
     "groupTitle": "GET"
@@ -86,10 +107,17 @@ define({ "api": [
   {
     "type": "get",
     "url": "/meteo/data/range/:debut/:fin",
-    "title": "",
+    "title": "Obtenir une fourchette",
     "name": "Range",
     "group": "GET",
     "description": "<p>Renvoie toutes les données entre la date de début et fin</p>",
+    "examples": [
+      {
+        "title": "Recevoir les données du 2017-04-08 au 2017-04-12:",
+        "content": "http://localhost/meteo/data/2017-04-08/2017-04-11",
+        "type": "json"
+      }
+    ],
     "version": "0.0.0",
     "filename": "test/server.js",
     "groupTitle": "GET"
@@ -104,5 +132,22 @@ define({ "api": [
     "version": "0.0.0",
     "filename": "test/server.js",
     "groupTitle": "POST"
+  },
+  {
+    "type": "get",
+    "url": "/user/:id",
+    "title": "",
+    "examples": [
+      {
+        "title": "Example usage:",
+        "content": "curl -i http://localhost/user/4711",
+        "type": "curl"
+      }
+    ],
+    "version": "0.0.0",
+    "filename": "test/server.js",
+    "group": "_var_www_html_Meteo_NodeJS_test_server_js",
+    "groupTitle": "_var_www_html_Meteo_NodeJS_test_server_js",
+    "name": "GetUserId"
   }
 ] });

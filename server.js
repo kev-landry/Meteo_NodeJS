@@ -24,6 +24,7 @@ app.get('/', (request, response) => {
 
 })
 
+//Chemin de la doc officiel (huehue)
 app.get('/doc', (request, response) => {
 
     response.render('pages/doc_api', {
@@ -67,8 +68,9 @@ app.get('/meteo/data/', (request, response) => {
  * @apiName Lastrecords
  * @apiGroup GET
  * @apiDescription Renvoie les n dernières données
- * @apiExample {js} Example usage:
- *          This is an example.
+ *
+ * @apiExample Recevoir les 15 dernières données:
+ *     http://localhost/user/15
  */
 
 
@@ -89,9 +91,10 @@ app.get('/meteo/data/lastrecords/:lastrecords', (request, response) => {
  * @apiGroup GET
  * @apiDescription Renvoie toutes les données du mois passées en paramètre
  *
- * @apiExemple {curl} exemple
- * curl -i http://localhost:8000/meteo/data/mois/avril
+ * @apiExample Recevoir les données du mois d'avril:
+ *     http://localhost/data/meteo/mois/avril
  */
+
 //Choisir un mois :
 app.get('/meteo/data/mois/:mois_variable', (request, response) => {
     response.status(200)
@@ -107,10 +110,12 @@ app.get('/meteo/data/mois/:mois_variable', (request, response) => {
  * @api {get} /meteo/data/jour/:jour Obtenir les données du jour
  * @apiName Jour
  * @apiGroup GET
- * @apiDescription Renvoie toutes les données du jour passées en paramètre
- * @apiExemple Je souhaite savoir les température du 2017-04-09 :
- *    /meteo/data/jour/2017-04-09
+ * @apiDescription Renvoie toutes les données du jour passées en paramètre au format anglais
+ *
+ * @apiExample Recevoir les données de mardu 11 avril
+ *     http://localhost/meteo/data/jour/2017-04-11
  */
+
 //Choisir un jour:
 app.get('/meteo/data/jour/:jour_variable', (request, response) => {
     response.status(200)
@@ -127,9 +132,11 @@ app.get('/meteo/data/jour/:jour_variable', (request, response) => {
  * @apiName Range
  * @apiGroup GET
  * @apiDescription Renvoie toutes les données entre la date de début et fin
- * @apiExemple Entre le 2017-04-08 et le 2017-04-10 :
- *    /meteo/data/range/2017-04-08/2017-04-10
+ *
+ * @apiExample Recevoir les données du 2017-04-08 au 2017-04-12:
+ *     http://localhost/meteo/data/2017-04-08/2017-04-11
  */
+
 //Choisir range
 app.get('/meteo/data/range/:debut/:fin', (request, response) => {
     response.status(200)
@@ -143,7 +150,7 @@ app.get('/meteo/data/range/:debut/:fin', (request, response) => {
 })
 
 /**
- * @api {post} /node/ NodeMCU vers API 
+ * @api {post} /node/ NodeMCU vers API
  * @apiName Node MCU
  * @apiGroup POST
  * @apiDescription Envoie les données capturées par le node MCU
