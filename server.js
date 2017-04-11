@@ -3,6 +3,7 @@
 var express = require('express') //express la base
 var url = require('url') // osef atm
 var bodyparser = require('body-parser') //Pour extraire le body de la requête
+
 var app = express()
 var path = require('path')
 
@@ -70,7 +71,7 @@ app.get('/meteo/data/', (request, response) => {
  * @apiDescription Renvoie les n dernières données
  *
  * @apiExample Recevoir les 15 dernières données:
- *     http://localhost/user/15
+ *     /meteo/data/lastrecords/15
  */
 
 
@@ -92,7 +93,7 @@ app.get('/meteo/data/lastrecords/:lastrecords', (request, response) => {
  * @apiDescription Renvoie toutes les données du mois passées en paramètre
  *
  * @apiExample Recevoir les données du mois d'avril:
- *     http://localhost/data/meteo/mois/avril
+ *     /data/meteo/mois/avril
  */
 
 //Choisir un mois :
@@ -113,7 +114,7 @@ app.get('/meteo/data/mois/:mois_variable', (request, response) => {
  * @apiDescription Renvoie toutes les données du jour passées en paramètre au format anglais
  *
  * @apiExample Recevoir les données de mardu 11 avril
- *     http://localhost/meteo/data/jour/2017-04-11
+ *     /meteo/data/jour/2017-04-11
  */
 
 //Choisir un jour:
@@ -134,7 +135,7 @@ app.get('/meteo/data/jour/:jour_variable', (request, response) => {
  * @apiDescription Renvoie toutes les données entre la date de début et fin
  *
  * @apiExample Recevoir les données du 2017-04-08 au 2017-04-12:
- *     http://localhost/meteo/data/2017-04-08/2017-04-11
+ *     /meteo/data/2017-04-08/2017-04-11
  */
 
 //Choisir range
@@ -167,10 +168,5 @@ app.post('/node/', (request, response) => {
         console.log("envoie de donnees => DB") //checking logs
     })
 })
-/**
- * @api {get} /user/:id
- * @apiExample {curl} Example usage:
- *     curl -i http://localhost/user/4711
- */
 
 app.listen(8000)
