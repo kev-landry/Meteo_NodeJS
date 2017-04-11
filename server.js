@@ -84,7 +84,7 @@ app.get('/meteo/data/lastrecords/:lastrecords', (request, response) => {
 })
 
 /**
- * @api {get} /meteo/data/mois/:mois
+ * @api {get} /meteo/data/mois/:mois Obtenir les données du mois
  * @apiName Mois
  * @apiGroup GET
  * @apiDescription Renvoie toutes les données du mois passées en paramètre
@@ -104,7 +104,7 @@ app.get('/meteo/data/mois/:mois_variable', (request, response) => {
 })
 
 /**
- * @api {get} /meteo/data/jour/:jour
+ * @api {get} /meteo/data/jour/:jour Obtenir les données du jour
  * @apiName Jour
  * @apiGroup GET
  * @apiDescription Renvoie toutes les données du jour passées en paramètre
@@ -123,7 +123,7 @@ app.get('/meteo/data/jour/:jour_variable', (request, response) => {
 })
 
 /**
- * @api {get} /meteo/data/range/:debut/:fin
+ * @api {get} /meteo/data/range/:debut/:fin Obtenir une fourchette
  * @apiName Range
  * @apiGroup GET
  * @apiDescription Renvoie toutes les données entre la date de début et fin
@@ -143,7 +143,7 @@ app.get('/meteo/data/range/:debut/:fin', (request, response) => {
 })
 
 /**
- * @api {post} /node/ NodeMCU vers API
+ * @api {post} /node/ NodeMCU vers API 
  * @apiName Node MCU
  * @apiGroup POST
  * @apiDescription Envoie les données capturées par le node MCU
