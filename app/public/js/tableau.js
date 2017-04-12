@@ -16,12 +16,12 @@ $(document).ready(function()
 });
 
 /* Fonction permettant de modifier l'écriture de la date qui s'affiche dans le tableau */
-function formatDate(str)
+function EnDateToFrDate(EnDate)
 {
-  str = str.replace("T"," à ");    // remplace le "T" contenu dans le json par un "à"
-  str = str.replace(":"," h ");    // remplace le ":" contenu dans le json par un "h"
-  var res = str.substring(0, 20);  // on garde 20 valeurs du tableau en partant de 0 supprime les autres valeurs
-  return res;
+  FrDate = "Le "+EnDate[8]+EnDate[9]+"-"+EnDate[5]+EnDate[6]+"-"+EnDate[0]+EnDate[1]+EnDate[2]+EnDate[3];
+  FrDate += " à "+EnDate[11]+EnDate[12]+":"+EnDate[14]+EnDate[15]+":"+EnDate[17]+EnDate[18];
+
+  return FrDate;
 }
 
 function constructionTableau()
@@ -50,8 +50,8 @@ function constructionTableau()
         hum.push(json[i]['hum']);
 
         // On construit les lignes du tableau contenant les données
-        // On appelle la fonction formatDate() pour donner à la date une forme plus conventionnelle
-        tableau += "<tr><td>" + formatDate(json[i]['time_']) + "</td><td>" + json[i]['temp']+ "°C" + "</td><td>" + json[i]['hum']+ "%" + "</td></tr>";
+        // On appelle la fonction EnDateToFrDate() pour donner à la date une forme plus conventionnelle
+        tableau += "<tr><td>" + EnDateToFrDate(json[i]['time_']) + "</td><td>" + json[i]['temp']+ "°C" + "</td><td>" + json[i]['hum']+ "%" + "</td></tr>";
       }
       tableau += "</tbody></table>";
       $('#tableau').append(tableau); // On introduit le tableau dans la div
