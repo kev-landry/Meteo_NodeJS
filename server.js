@@ -135,7 +135,7 @@ app.get('/meteo/data/jour/:jour_variable', (request, response) => {
  * @apiDescription Renvoie toutes les données entre la date de début et fin
  *
  * @apiExample Recevoir les données du 2017-04-08 au 2017-04-12:
- *     /meteo/data/2017-04-08/2017-04-11
+ *     /meteo/data/range/2017-04-08/2017-04-11
  */
 
 //Choisir range
@@ -159,13 +159,13 @@ app.get('/meteo/data/range/:debut/:fin', (request, response) => {
 
 // --- Route data reçoit JSON du nodeMCU---
 app.post('/node/', (request, response) => {
-    console.log(request.body)
+    console.log(request.body) //checking logs
     response.status(200) //Check status by nodeMCU
 
     //Interaction avec la BDD on envoit les donnees du node --
-    var Donnees = require('./app/models/donnees')
+    var Donnees = require('./app/models/donnees') //Chemin où se trouve notre class
     Donnees.insert(request.body['temp'], request.body['hum'], function() { // Appel de la la méthode insert dans la class Donnes
-        console.log("envoie de donnees => DB") //checking logs
+        console.log("envoie de donnees => DB") //Informer sur la console
     })
 })
 
