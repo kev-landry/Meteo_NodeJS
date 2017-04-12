@@ -19,7 +19,7 @@ $(document).ready(function() {
       affich += data["responseJSON"][0]['temp']+"°C";
       $('#date-temp').html(affich);
 
-      var affich2 = "Dernière humidité reçue : ";
+      var affich2 = "Dernier taux d'humidité reçu : ";
       affich2 += data["responseJSON"][0]['hum']+"%";
       $('#date-hum').html(affich2);
     }
