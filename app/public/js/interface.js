@@ -1,12 +1,11 @@
 $(document).ready(function() {
-  // $.getJSON('http://localhost:8000/meteo/data/lastrecords/1', function(json) {
-  //     alert(json[0]['temp']);
-  // });
+  // Fonction AJAX qui récupère les dernières données à insérer dans l'en-tête du menu
   $.ajax({
     url: "http://localhost:8000/meteo/data/lastrecords/1",
     type: "GET",
     dataType: 'json',
 
+    // Fonction si une erreur d'envoi de données se produit
     error : function(data){
       console.log("Erreur");
       console.log(data);
@@ -16,11 +15,11 @@ $(document).ready(function() {
     complete : function(data,statut){
       console.log(data);
       var affich = "Dernière température reçue : ";
-      affich += data["responseJSON"][0]['temp']+"°C";
+      affich += data["responseJSON"][0]['temp']+"°C"; // Chemin vers la donnée température
       $('#date-temp').html(affich);
 
       var affich2 = "Dernier taux d'humidité reçu : ";
-      affich2 += data["responseJSON"][0]['hum']+"%";
+      affich2 += data["responseJSON"][0]['hum']+"%";  // Chemin vers la donnée humidité
       $('#date-hum').html(affich2);
     }
   });
