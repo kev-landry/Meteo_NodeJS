@@ -15,6 +15,15 @@ $(document).ready(function()
   });
 });
 
+/* Fonction permettant de modifier l'écriture de la date qui s'affiche dans le tableau */
+function formatDate(str)
+{
+  str = str.replace("T"," à ");    // remplace le "T" contenu dans le json par un "à"
+  str = str.replace(":"," h ");    // remplace le ":" contenu dans le json par un "h"
+  var res = str.substring(0, 20);  // on garde 20 valeurs du tableau en partant de 0 supprime les autres valeurs
+  return res;
+}
+
 function constructionTableau()
 {
   // On récupère le json afin de mettre les données dans notre tableau
@@ -41,7 +50,8 @@ function constructionTableau()
         hum.push(json[i]['hum']);
 
         // On construit les lignes du tableau contenant les données
-        tableau += "<tr><td>" + json[i]['time_'] + "</td><td>" + json[i]['temp']+ "°C" + "</td><td>" + json[i]['hum']+ "%" + "</td></tr>";
+        // On appelle la fonction formatDate() pour donner à la date une forme plus conventionnelle
+        tableau += "<tr><td>" + formatDate(json[i]['time_']) + "</td><td>" + json[i]['temp']+ "°C" + "</td><td>" + json[i]['hum']+ "%" + "</td></tr>";
       }
       tableau += "</tbody></table>";
       $('#tableau').append(tableau); // On introduit le tableau dans la div
