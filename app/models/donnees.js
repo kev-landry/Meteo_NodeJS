@@ -1,14 +1,12 @@
 var connection = require('./connection_db')
 
 class Donnees {
-
-// On utilisera ici des méthodes static donc commune entre toutes les instances de la classe "Donnees" si j'ai bien compris ?
-    static insert(temp, hum, cb) {
-        // -- Query similaire au prepare de PHP avec SET ?
+// On utilisera ici des méthodes static donc commune entre toutes les instances de la classe "Donnees"
+    static insert(temp, hum, callback) {
         connection.query('INSERT INTO donnees SET temp = ?, hum = ?, time_ = ?', [temp, hum, new Date()], (err, result) => {
-            if (err) throw err
+            if (err) throw err //On catch l'erreur
 
-            cb(result) //Le callback sa mère
+            callback(result) //
         })
     }
 
