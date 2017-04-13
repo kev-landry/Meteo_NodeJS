@@ -27,8 +27,7 @@ app.get('/', (request, response) => {
 
 //Chemin de la doc officiel (huehue)
 app.get('/doc', (request, response) => {
-
-    response.render('pages/doc_api', {
+    response.render('index', {
         test: 'Salut' //variable locale
     })
 })
