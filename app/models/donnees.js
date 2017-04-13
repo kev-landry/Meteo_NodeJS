@@ -86,7 +86,7 @@ class Donnees {
                 callback(result)
             })
     }
-
+    
     static range(debut, fin, callback) {
         connection.query("SELECT * FROM donnees WHERE time_ BETWEEN '" + debut + "' AND '" + fin + "' ", (err, result) => {
             if (err) throw err

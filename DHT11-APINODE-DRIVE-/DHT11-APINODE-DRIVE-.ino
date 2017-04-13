@@ -39,9 +39,7 @@ void setup() {
   Serial.println("Bonjour monde");          // écriture d'un petit message...
   Serial.println("");
   dht.begin();                        // Démarrage du capteur DHT11
-  //WiFiMulti.addAP("xperia", "ccd5c43e0597"); // Connexion au réseau wifi
-  //WiFiMulti.addAP("42-iphone", "fwimzb61edfk4");
-  WiFiMulti.addAP("freebox", "031674E989");
+  //WiFiMulti.addAP("ssid", "password"); // Connexion au réseau wifi
 
 }
 
